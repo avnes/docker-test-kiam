@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
         - name: test-kiam
-          image: nginx
+          image: ghcr.io/avnes/test-kiam:latest
           resources:
             limits:
               cpu: 100m
