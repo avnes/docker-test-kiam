@@ -1,0 +1,36 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: test-kiam
+  annotations:
+    iam.amazonaws.com/permitted: "FULL-ARN"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-kiam
+  namespace: test-kiam
+  labels:
+    app: test-kiam
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test-kiam
+  template:
+    metadata:
+      annotations:
+        iam.amazonaws.com/role: "FULL-ARN"
+      labels:
+        app: test-kiam
+    spec:
+      containers:
+        - name: test-kiam
+          image: nginx
+          resources:
+            limits:
+              cpu: 100m
+              memory: 100Mi
+          ports:
+            - containerPort: 80
