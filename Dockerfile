@@ -1,4 +1,4 @@
-FROM nginx:1.21
+FROM nginx:stable
 
 RUN apt update && \
     apt install awscli -y
